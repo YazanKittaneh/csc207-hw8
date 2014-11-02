@@ -1,7 +1,7 @@
 package taojava.labs.sorting;
 
 import java.io.PrintWriter;
-
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
 
@@ -68,6 +68,43 @@ public class SorterAnalyzer
           Integer[] vals = new Integer[length];
           for (int i = 0; i < length; i++)
             vals[i] = i;
+          return vals;
+        };
+
+  /*
+   * Build arrays of integer values in decreasing order.
+   */
+  public static final ArrayBuilder<Integer> decreasingIntArrBuilder =
+      (length) ->
+        {
+          Integer[] vals = new Integer[length];
+          for (int i = length; i > 0; i--)
+            vals[i] = i;
+          return vals;
+        };
+
+  /*
+   * Build arrays of integer values in decreasing order.
+   */
+  public static final ArrayBuilder<Integer> mostlyIntArrBuilder =
+      (length) ->
+        {
+          Integer[] vals = new Integer[length];
+          for (int i = 0; i < length; i++)
+            vals[i] = i;
+          
+          Random rand = new Random(9);
+          Random randArr = new Random(length - 1);
+          
+          for(int j = 0; j < length; j++){
+            
+            if (rand.nextInt() == 7)
+              Utils.swap(vals, vals[randArr.nextInt()], vals[randArr.nextInt()]);
+            
+          }
+          
+          
+          
           return vals;
         };
 
@@ -140,7 +177,26 @@ public class SorterAnalyzer
                                             ArrayBuilder<T> builder, int size,
                                             int repetitions)
   {
-    return new long[] { basicAnalysis(sorter, order, builder, size) };
+    long minimumRunTime = 0;
+    long averageRunTime = 0;
+    long maximumRunTime = 0;
+    long temp = 0;
+    long remainder = 0;
+
+    for (int i = 0; i < repetitions; i++)
+      {
+        temp = basicAnalysis(sorter, order, builder, size);
+        if (temp < minimumRunTime)
+          minimumRunTime = temp;
+        else if (temp > maximumRunTime)
+          maximumRunTime = temp;
+        averageRunTime = +(temp / repetitions);
+        remainder = +temp % repetitions;
+      }
+
+    averageRunTime = +remainder / repetitions;
+    long resultArray[] = { minimumRunTime, averageRunTime, maximumRunTime };
+    return resultArray;
   } // compoundAnalysis(Sorter<T>, ArrayBuilder<T>, int, int)
 
   /**
@@ -165,19 +221,28 @@ public class SorterAnalyzer
                                           ArrayBuilder<T> builders[],
                                           String[] builderNames)
   {
+
     pen.printf("%-16s%-16s%-16s%-16s\n", "Sorter", "Builder", "Input Size",
                "Average Time");
     pen.printf("%-16s%-16s%-16s%-16s\n", "------", "-------", "------------",
                "------------");
     for (int b = 0; b < builders.length; b++)
       {
+
         for (int size = SMALLEST; size <= LARGEST; size *= SCALE)
           {
-            long[] stats =
-                compoundAnalysis(sorters[0], order, builders[b], size,
-                                 REPETITIONS);
-            pen.printf("%-16s%-16s%12d    %12d\n", sorterNames[0],
-                       builderNames[b], size, stats[0]);
+            for (int sorterIndex = 0; sorterIndex < sorters.length; sorterIndex++)
+              {
+                long[] stats =
+                    compoundAnalysis(sorters[sorterIndex], order, builders[b],
+                                     size, REPETITIONS);
+                for (int i = 0; i < 3; i++)
+                  {
+                    pen.printf("%-16s%-16s%12d    %12d\n",
+                               sorterNames[sorterIndex], builderNames[b], size,
+                               stats[i]);
+                  } // for print stats
+              } // for sorterIndex
           } // for size
       } // for builder : builders
   } // combinedAnalysis(PrintWRiter, Sorter<T>, String[], ...)

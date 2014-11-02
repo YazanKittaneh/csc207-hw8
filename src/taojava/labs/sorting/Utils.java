@@ -132,9 +132,29 @@ class Utils
    */
   public static <T> T[] merge(Comparator<T> order, T[] a1, int lb1, int ub1,
                               T[] a2, int lb2, int ub2, T[] merged, int lbm,
-                              int ubm)
+                              int ubm) 
   {
-    // STUB
+  
+    
+    for (int index = 0; index < ubm; index++){
+    
+      
+      
+      if ((lb1 < ub1) && (lb2 < ub2))
+        if (order.compare(a1[lb1], a2[lb2]) < 0)
+          merged[index] = a1[lb1++];
+        else if(order.compare(a1[lb1], a2[lb2]) > 0)
+          merged[index] = a2[lb2++];
+        else
+          merged[index] = a1[lb1++];
+     else if (lb1 < ub1)    
+       merged[index] = a2[ub2++];
+     else if (lb2 < lb2)
+       merged[index] = a1[ub1++];
+   
+      
+    }
+    
     return merged;
   } // merge(Comparator<T>, T[], int, int, T[], int, int)
 
