@@ -78,7 +78,7 @@ public class SorterAnalyzer
       (length) ->
         {
           Integer[] vals = new Integer[length];
-          for (int i = length; i > 0; i--)
+          for (int i = length-1; i > 0; i--)
             vals[i] = i;
           return vals;
         };
@@ -86,27 +86,49 @@ public class SorterAnalyzer
   /*
    * Build arrays of integer values in decreasing order.
    */
-  public static final ArrayBuilder<Integer> mostlyIntArrBuilder =
+  public static final ArrayBuilder<Integer> mostlyIntArrBuilder = (length) ->
+    {
+      Integer[] vals = new Integer[length];
+      for (int i = 0; i < length; i++)
+        vals[i] = i;
+
+      Random rand = new Random(9);
+      Random randArr = new Random(length - 1);
+
+      for (int j = 0; j < length; j++)
+        {
+          if (rand.nextInt() == 7)
+            Utils.swap(vals, vals[randArr.nextInt()], vals[randArr.nextInt()]);
+        }
+      return vals;
+    };
+
+    /*
+  public static final ArrayBuilder<Integer> IncreasingSizeArrBuilder =
       (length) ->
         {
           Integer[] vals = new Integer[length];
-          for (int i = 0; i < length; i++)
+          for (int i = length; i > 0; i--)
             vals[i] = i;
-          
-          Random rand = new Random(9);
-          Random randArr = new Random(length - 1);
-          
-          for(int j = 0; j < length; j++){
-            
-            if (rand.nextInt() == 7)
-              Utils.swap(vals, vals[randArr.nextInt()], vals[randArr.nextInt()]);
-            
-          }
-          
-          
-          
           return vals;
         };
+        
+  public static final ArrayBuilder<Integer> decreasingSizeArrBuilder =
+      (length) ->
+        {
+          int arraySize=0;
+          Random randNum = new Random(14)
+          for( arraySize=0; arraySize<length; ++arraySize)
+            {
+              
+            }
+          
+          Integer[] vals = new Integer[length];
+          for (int i = length; i > 0; i--)
+            vals[i] = i;
+          return vals;
+        };
+        */
 
   // +--------------+----------------------------------------------------
   // | Class Fields |
