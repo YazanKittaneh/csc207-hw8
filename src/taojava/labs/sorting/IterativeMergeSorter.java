@@ -21,10 +21,14 @@ public class IterativeMergeSorter<T>
   {
     // STUB
     int size = 1;
+    int length = vals.length;
     while (size < vals.length)
       {
         // Merge neighboring subarrays of size size
-        // FILL IN!
+        for (int i = 0; i + 2 * size <= length; i += 2 * size)
+          {
+            
+          }
         // The merged subarrays are now twice as large
         size *= 2;
       } // while
