@@ -86,7 +86,30 @@ public class NewQuicksorter<T>
    */
   int[] partition(T pivot, T[] vals, Comparator<T> order, int lb, int ub)
   {
-    // STUB
-    return new int[] { lb,ub };
+    T tmp;
+    int lb = lb;
+    int ub = ub;
+    for (int i = 0; i < values.length; i++)
+      {
+        //If value is equal to val
+        if (order.compare(val, values[i]) == 0)
+          {
+            tmp = values[i];
+            values[i] = values[ub];
+            values[ub] = tmp;
+            ub++;
+          }//if
+      //If value is less than val
+        else if (order.compare(val, values[i]) > 0)
+          {
+            tmp = values[i];
+            values[i] = values[ub];
+            values[ub] = values[lb];
+            values[lb] = tmp;
+            ub++;
+            lb++;
+          }//if
+      }//for
+    return new int[] { lb, ub };
   } // partition
 } // NewQuicksorter<T>
