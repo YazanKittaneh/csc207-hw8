@@ -136,7 +136,7 @@ class Utils
   {
   
     
-    for (int index = 0; index < ubm; index++){
+    for (int index = lbm; index < ubm; index++){
     
       
       
@@ -148,9 +148,9 @@ class Utils
         else
           merged[index] = a1[lb1++];
      else if (lb1 < ub1)    
-       merged[index] = a2[ub2++];
-     else if (lb2 < lb2)
-       merged[index] = a1[ub1++];
+       merged[index] = a1[lb1++];
+     else if (lb2 < ub2)
+       merged[index] = a2[lb2++];
    
       
     }

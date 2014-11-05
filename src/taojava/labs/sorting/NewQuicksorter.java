@@ -49,7 +49,7 @@ public class NewQuicksorter<T>
   {
     return vals[lb];
   } // selectPivot(T[], Comparator<T>, int, int)
-  
+
   /**
    * Reorganize the elements in positions [lb..ub) of vals such that
    * elements smaller than the pivot appear to the left, elements
@@ -86,25 +86,22 @@ public class NewQuicksorter<T>
    */
   int[] partition(T pivot, T[] vals, Comparator<T> order, int lb, int ub)
   {
-    int small = 0; // Upper bound on small values
-int equal = 0; // Upper bound on equal values intlarge=values.length; //Lowerboundonlargevalues
-int large = values.length;
+    int small = lb; // Upper bound on small vals
+    int equal = ub; // Upper bound on equal vals intlarge=vals.length; //Lowerboundonlargevalues
+    int large = vals.length;
 
-while (equal < large)
-{
-int tmp = order.compare(values[equal], val);
-// If the value is small, swap to the end of the small //values. Thatvalueshouldbeequal,sowecanincrement if (tmp < 0)
-{
-swap(values, small++, equal++);
-} // Small value
-// If the value is equal, just increment the equal boundary else if (tmp == 0)
-{ ++equal;
-} // Equal value
-//Otherwise,thevalueislarge. Swaptotheend. We // don't know what that value is, so we keep the equal // boundary where it was.
-else
-{
-swap(values, equal, --large);
-} // Large value } // while
-return new int[] { small, large };
+    while (equal < large)
+      {
+        int tmp = order.compare(vals[equal], pivot);
+
+        if (tmp < 0)
+          Utils.swap(vals, small++, equal++);
+        else if (tmp == 0)
+          ++equal;
+        else
+          Utils.swap(vals, equal, --large);
+      }
+    return new int[] { small, large };
   } // partition
+
 } // NewQuicksorter<T>
