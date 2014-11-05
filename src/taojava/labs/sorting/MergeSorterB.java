@@ -1,9 +1,8 @@
 package taojava.labs.sorting;
 
-import java.lang.reflect.Array;
 import java.util.Comparator;
 
-public class MergeSortB<T>
+public class MergeSorterB<T>
   extends SorterBridge<T>
 {
   /**
@@ -14,7 +13,7 @@ public class MergeSortB<T>
   @SuppressWarnings("unchecked")
   public T[] sort(T[] vals, Comparator<T> order)
   {
-    T[] scratch = (T[]) new Array[vals.length];
+    T[] scratch = (T[]) new Object[vals.length];
     return mergeSort(order, vals, 0, vals.length, scratch);
   } // sort(T[], Comparator<T>)
   
@@ -23,21 +22,18 @@ public class MergeSortB<T>
     int mid;
     int length = ub-lb;
     if (length <= 1)
-      {
-        return vals;
-      } // if array is one element
+        return vals;    
     else
       {
         mid =  lb + length / 2;
         mergeSort(order, vals, lb, mid, scratch);
         mergeSort(order, vals, mid, ub, scratch);
-        // copy sorted halves into scratch
+
         for (int i = lb; i < ub; i++)
-          {
             scratch[i] = vals[i];
-          } // for
-        // merge back into values
+
         return Utils.merge(order, scratch, lb, mid, scratch, mid, ub, vals, lb, ub);
       } // else
   }
 }
+
