@@ -86,30 +86,25 @@ public class NewQuicksorter<T>
    */
   int[] partition(T pivot, T[] vals, Comparator<T> order, int lb, int ub)
   {
-    T tmp;
-    int lb = lb;
-    int ub = ub;
-    for (int i = 0; i < values.length; i++)
-      {
-        //If value is equal to val
-        if (order.compare(val, values[i]) == 0)
-          {
-            tmp = values[i];
-            values[i] = values[ub];
-            values[ub] = tmp;
-            ub++;
-          }//if
-      //If value is less than val
-        else if (order.compare(val, values[i]) > 0)
-          {
-            tmp = values[i];
-            values[i] = values[ub];
-            values[ub] = values[lb];
-            values[lb] = tmp;
-            ub++;
-            lb++;
-          }//if
-      }//for
-    return new int[] { lb, ub };
+    int small = 0; // Upper bound on small values
+int equal = 0; // Upper bound on equal values intlarge=values.length; //Lowerboundonlargevalues
+int large = values.length;
+
+while (equal < large)
+{
+int tmp = order.compare(values[equal], val);
+// If the value is small, swap to the end of the small //values. Thatvalueshouldbeequal,sowecanincrement if (tmp < 0)
+{
+swap(values, small++, equal++);
+} // Small value
+// If the value is equal, just increment the equal boundary else if (tmp == 0)
+{ ++equal;
+} // Equal value
+//Otherwise,thevalueislarge. Swaptotheend. We // don't know what that value is, so we keep the equal // boundary where it was.
+else
+{
+swap(values, equal, --large);
+} // Large value } // while
+return new int[] { small, large };
   } // partition
 } // NewQuicksorter<T>
