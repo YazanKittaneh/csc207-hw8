@@ -86,23 +86,21 @@ public class NewQuicksorter<T>
    */
   int[] partition(T pivot, T[] vals, Comparator<T> order, int lb, int ub)
   {
-    int small = lb; // Upper bound on small vals
-    int equal = ub; // Upper bound on equal vals intlarge=vals.length; //Lowerboundonlargevalues
-    int large = vals.length;
 
-    while (equal < large)
+    int equal = lb;
+    while (equal < ub)
       {
         int tmp = order.compare(vals[equal], pivot);
 
         if (tmp < 0)
-          Utils.swap(vals, small++, equal++);
+          Utils.swap(vals, lb++, equal++);
         else if (tmp == 0)
           ++equal;
         else
-          Utils.swap(vals, equal, --large);
+          Utils.swap(vals, equal, --ub);
       }
 
-    return new int[] { small, large };
+    return new int[] { lb, ub };
   } // partition
 
 } // NewQuicksorter<T>
