@@ -21,8 +21,8 @@ public class SampleAnalysis
                                           new NewQuicksorter<Integer>(),
                                           new MergeSorter<Integer>(),
                                           new MergeSorterB<Integer>(),
-                                          };
-    String[] sorterNames = { "Built-in", "Quicksorter", "MergeSorter", "MergeSorterB", "IterMergeSorter" };
+                                          new IterativeMergeSorter<Integer>()};
+    String[] sorterNames = { /*"Built-in", "InsertionSorter", */"Quicksorter"/*, "MergeSorter", "MergeSorterB", "IterMergeSorter"*/ };
 
     @SuppressWarnings("unchecked")
     ArrayBuilder<Integer>[] builders =

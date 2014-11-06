@@ -21,19 +21,26 @@ public class MergeSorterB<T>
   {
     int mid;
     int length = ub-lb;
+
     if (length <= 1)
         return vals;    
     else
       {
+        /*
+         * Merge recursively.
+         */
         mid =  lb + length / 2;
         mergeSort(order, vals, lb, mid, scratch);
         mergeSort(order, vals, mid, ub, scratch);
 
+        /*
+         * Copy values into the scratch array.
+         */
         for (int i = lb; i < ub; i++)
             scratch[i] = vals[i];
 
         return Utils.merge(order, scratch, lb, mid, scratch, mid, ub, vals, lb, ub);
       } // else
-  }
-}
+  }//mergeSort(Comparator, T[], int, int, T[])
+}//MergeSorterB
 

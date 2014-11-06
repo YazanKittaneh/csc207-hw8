@@ -1,7 +1,6 @@
-  package taojava.labs.sorting;
+package taojava.labs.sorting;
 
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
 
@@ -14,7 +13,7 @@ import java.util.Random;
 public class SorterAnalyzer
 {
   // +---------------+---------------------------------------------------
-  // | Configuration | 
+  // | Configuration |
   // +---------------+
 
   /**
@@ -69,7 +68,7 @@ public class SorterAnalyzer
           for (int i = 0; i < length; i++)
             vals[i] = i;
           return vals;
-        };
+        };//increasingIntArrBuilder
 
   /*
    * Build arrays of integer values in decreasing order.
@@ -78,10 +77,10 @@ public class SorterAnalyzer
       (length) ->
         {
           Integer[] vals = new Integer[length];
-          for (int i = length-1; i >= 0; i--)
+          for (int i = length - 1; i >= 0; i--)
             vals[(length - 1) - i] = i;
           return vals;
-        };
+        };//decreasingIntArrBuilder
 
   /*
    * Build arrays of integer values in decreasing order.
@@ -92,43 +91,20 @@ public class SorterAnalyzer
       for (int i = 0; i < length; i++)
         vals[i] = i;
 
+      //We need random numbers in the range 0-9
       Random rand = new Random(9);
+      //This is for choosing a random element in arr
       Random randArr = new Random(length - 1);
 
       for (int j = 0; j < length; j++)
         {
+          //Choose any number in the range. So, there's 10% chance of
+          //the array getting messed up
           if (rand.nextInt() == 7)
             Utils.swap(vals, vals[randArr.nextInt()], vals[randArr.nextInt()]);
         }
       return vals;
-    };
-
-    /*
-  public static final ArrayBuilder<Integer> IncreasingSizeArrBuilder =
-      (length) ->
-        {
-          Integer[] vals = new Integer[length];
-          for (int i = length; i > 0; i--)
-            vals[i] = i;
-          return vals;
-        };
-        
-  public static final ArrayBuilder<Integer> decreasingSizeArrBuilder =
-      (length) ->
-        {
-          int arraySize=0;
-          Random randNum = new Random(14)
-          for( arraySize=0; arraySize<length; ++arraySize)
-            {
-              
-            }
-          
-          Integer[] vals = new Integer[length];
-          for (int i = length; i > 0; i--)
-            vals[i] = i;
-          return vals;
-        };
-        */
+    };//mostlyIntArrBuilder
 
   // +--------------+----------------------------------------------------
   // | Class Fields |
@@ -170,12 +146,11 @@ public class SorterAnalyzer
 
     // Start the timer.  (Duh.)
     timer.start();
+
     // Do the real work.
-    //Integer[] blah = {1, 5, 3, 7, 2, 5, 6};
-    
     try
       {
-        sorter.sort((T[])values, order);
+        sorter.sort(values, order);
       } // try            
     catch (Throwable error)
       {
@@ -200,8 +175,8 @@ public class SorterAnalyzer
                                             ArrayBuilder<T> builder, int size,
                                             int repetitions)
   {
-   
-    long temp =  basicAnalysis(sorter, order, builder, size);
+
+    long temp = basicAnalysis(sorter, order, builder, size);
     long minimumRunTime = temp;
     long averageRunTime = 0;
     long maximumRunTime = temp;
@@ -210,15 +185,18 @@ public class SorterAnalyzer
     for (int i = 0; i < repetitions; i++)
       {
         temp = basicAnalysis(sorter, order, builder, size);
+        //Just use our variables, and compare them to temp
+        //to determine whether they should be updated and
+        //what should be updated
         if (temp < minimumRunTime)
           minimumRunTime = temp;
         else if (temp > maximumRunTime)
           maximumRunTime = temp;
-        averageRunTime +=(temp / repetitions);
-        remainder +=temp % repetitions;
-      }
+        averageRunTime += (temp / repetitions);
+        remainder += temp % repetitions;
+      }//for
 
-    averageRunTime +=remainder / repetitions;
+    averageRunTime += remainder / repetitions;
     long resultArray[] = { minimumRunTime, averageRunTime, maximumRunTime };
     return resultArray;
   } // compoundAnalysis(Sorter<T>, ArrayBuilder<T>, int, int)
@@ -246,10 +224,10 @@ public class SorterAnalyzer
                                           String[] builderNames)
   {
 
-    pen.printf("%-16s%-16s%-16s%-16s%-16s%-16s\n", "Sorter", "Builder", "Input Size", "Minimum Time",
-               "Average Time", "Maximum Time");
-    pen.printf("%-16s%-16s%-16s%-16s%-16s%-16s\n", "------", "-------", "------------",
-               "------------","------------","------------");
+    pen.printf("%-16s%-16s%-16s%-16s%-16s%-16s\n", "Sorter", "Builder",
+               "Input Size", "Minimum Time", "Average Time", "Maximum Time");
+    pen.printf("%-16s%-16s%-16s%-16s%-16s%-16s\n", "------", "-------",
+               "------------", "------------", "------------", "------------");
     for (int b = 0; b < builders.length; b++)
       {
 
@@ -260,10 +238,10 @@ public class SorterAnalyzer
                 long[] stats =
                     compoundAnalysis(sorters[sorterIndex], order, builders[b],
                                      size, REPETITIONS);
-                
-                    pen.printf("%-16s%-16s%12d    %12d    %12d    %12d\n",
-                               sorterNames[sorterIndex], builderNames[b], size,
-                               stats[0],stats[1],stats[2]);
+
+                pen.printf("%-16s%-16s%12d    %12d    %12d    %12d\n",
+                           sorterNames[sorterIndex], builderNames[b], size,
+                           stats[0], stats[1], stats[2]);
 
               } // for sorterIndex
           } // for size

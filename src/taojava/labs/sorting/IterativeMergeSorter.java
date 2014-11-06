@@ -1,6 +1,5 @@
 package taojava.labs.sorting;
 
-import java.util.Arrays;
 import java.util.Comparator;
 
 /**
@@ -20,7 +19,6 @@ public class IterativeMergeSorter<T>
   @Override
   public T[] sorti(T[] vals, Comparator<T> order)
   {
-    System.out.println(Arrays.toString(vals));
     int size = 1;
     int length = vals.length;
     T[] scratch = (T[]) new Object[vals.length];
@@ -38,7 +36,6 @@ public class IterativeMergeSorter<T>
         // The merged subarrays are now twice as large
         size *= 2;
       } // while
-    System.out.println(Arrays.toString(vals));
     return vals;
   } // sorti(T[], Comparator<T>)
 } // IterativeMergeSorter<T>

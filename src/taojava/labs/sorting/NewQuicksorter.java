@@ -1,6 +1,5 @@
 package taojava.labs.sorting;
 
-import java.util.Arrays;
 import java.util.Comparator;
 
 /**
@@ -86,22 +85,27 @@ public class NewQuicksorter<T>
    */
   int[] partition(T pivot, T[] vals, Comparator<T> order, int lb, int ub)
   {
-    int small = lb; // Upper bound on small vals
-    int equal = ub; // Upper bound on equal vals intlarge=vals.length; //Lowerboundonlargevalues
-    int large = vals.length;
 
-    while (equal < large)
+    //Taken from Sam's notes on exam 1
+    int equal = lb;
+    while (equal < ub)
       {
         int tmp = order.compare(vals[equal], pivot);
-
+        // If the value is small, swap to the end of the small 
+        // values. That value should be equal, so we can increment
         if (tmp < 0)
-          Utils.swap(vals, small++, equal++);
+          Utils.swap(vals, lb++, equal++); // Small value
+        // If the value is equal, just increment the equal boundary
         else if (tmp == 0)
-          ++equal;
+          ++equal; // Equal value
+        // Otherwise, the value is large. Swap to the end. We 
+        // don't know what that value is, so we keep the equal 
+        // boundary where it was.
         else
-          Utils.swap(vals, equal, --large);
+          Utils.swap(vals, equal, --ub); // Large value
       }
-    return new int[] { small, large };
+
+    return new int[] { lb, ub };
   } // partition
 
 } // NewQuicksorter<T>
