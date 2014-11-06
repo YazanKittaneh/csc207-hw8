@@ -90,13 +90,18 @@ public class NewQuicksorter<T>
     while (equal < ub)
       {
         int tmp = order.compare(vals[equal], pivot);
-
+        // If the value is small, swap to the end of the small 
+        // values. That value should be equal, so we can increment
         if (tmp < 0)
-          Utils.swap(vals, lb++, equal++);
+          Utils.swap(vals, lb++, equal++); // Small value
+        // If the value is equal, just increment the equal boundary
         else if (tmp == 0)
-          ++equal;
+          ++equal; // Equal value
+        // Otherwise, the value is large. Swap to the end. We 
+        // don't know what that value is, so we keep the equal 
+        // boundary where it was.
         else
-          Utils.swap(vals, equal, --ub);
+          Utils.swap(vals, equal, --ub); // Large value
       }
 
     return new int[] { lb, ub };
