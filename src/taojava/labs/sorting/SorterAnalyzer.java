@@ -170,11 +170,11 @@ public class SorterAnalyzer
 
     // Start the timer.  (Duh.)
     timer.start();
-
     // Do the real work.
+    Integer[] blah = {1, 5, 3, 7, 2, 5, 6};
     try
       {
-        sorter.sort(values, order);
+        sorter.sort((T[])blah, order);
       } // try            
     catch (Throwable error)
       {
@@ -183,7 +183,6 @@ public class SorterAnalyzer
         System.out.println(error);
         return Long.MAX_VALUE;
       } // catch
-
     // Stop the timer.
     timer.pause();
 
