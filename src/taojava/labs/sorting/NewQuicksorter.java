@@ -101,6 +101,7 @@ public class NewQuicksorter<T>
         else
           Utils.swap(vals, equal, --large);
       }
+
     return new int[] { small, large };
   } // partition
 

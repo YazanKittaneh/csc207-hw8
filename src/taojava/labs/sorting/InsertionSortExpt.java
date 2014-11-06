@@ -12,7 +12,7 @@ public class InsertionSortExpt
    */
   public static void main(String[] args)
   {
-    ExptUtils.iExperiments(new InsertionSorter<Integer>());
-    ExptUtils.sExperiments(new InsertionSorter<String>());
+    ExptUtils.iExperiments(new NewQuicksorter<Integer>());
+    ExptUtils.sExperiments(new NewQuicksorter<String>());
   } // main(String[])
 } // class InsertionSortExpt
