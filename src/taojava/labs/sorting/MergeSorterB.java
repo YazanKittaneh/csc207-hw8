@@ -6,7 +6,7 @@ public class MergeSorterB<T>
   extends SorterBridge<T>
 {
   /**
-   * Sort vals using iterative merge sort. See the Sorter<T> interface for
+   * Sort vals using recersive merge sort with scratch array. See the Sorter<T> interface for
    * additional details.
    */
   @Override
