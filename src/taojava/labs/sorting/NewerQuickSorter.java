@@ -8,7 +8,7 @@ public class NewerQuickSorter<T>
   @Override
   public T selectPivot(T[] vals, Comparator<T> order, int lb, int ub)
   {
-    // TODO Auto-generated method stub
+    //take mid point
     int mid = (lb + ub)/2;
     return vals[mid];
   }

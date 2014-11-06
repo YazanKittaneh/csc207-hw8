@@ -134,23 +134,32 @@ class Utils
   
     
     for (int index = lbm; index < ubm; index++){
-    
+   
       
-      
+      //Check if both subarrays have elements we can step through
       if ((lb1 < ub1) && (lb2 < ub2))
+        //If the left subarray's element at lb1 is smaller, put it in merged
+        //and increment lb1
         if (order.compare(a1[lb1], a2[lb2]) < 0)
           merged[index] = a1[lb1++];
+        //If the right subarray's element at lb2 is smaller, put it in merged
+        //and increment lb2
         else if(order.compare(a1[lb1], a2[lb2]) > 0)
           merged[index] = a2[lb2++];
+        //both elements are equal, so just choose one and put it in merged and
+        //increment its lower bound
         else
           merged[index] = a1[lb1++];
+     //The following two conditions check if either subarray has run out of
+     //elements, so in that case just fill in merged with the other subarray's
+     //elements
      else if (lb1 < ub1)    
        merged[index] = a1[lb1++];
      else if (lb2 < ub2)
        merged[index] = a2[lb2++];
    
       
-    }
+    }//merge 
     
     return merged;
   } // merge(Comparator<T>, T[], int, int, T[], int, int)

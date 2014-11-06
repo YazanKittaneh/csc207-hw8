@@ -86,6 +86,7 @@ public class NewQuicksorter<T>
   int[] partition(T pivot, T[] vals, Comparator<T> order, int lb, int ub)
   {
 
+    //Taken from Sam's notes on exam 1
     int equal = lb;
     while (equal < ub)
       {

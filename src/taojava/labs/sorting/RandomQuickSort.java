@@ -16,6 +16,9 @@ public class RandomQuickSort<T>
 public T selectPivot(T[] vals, Comparator<T> order, int lb, int ub)
 {
   Random rand = new Random();
+  //Return a random int within range of our bounds, but since we need an index
+  // we add lb to it, and since we only want positive values, we return the
+  //absolute value
   return vals[Math.abs((rand.nextInt() % (ub-lb)) + lb)];
 }
  

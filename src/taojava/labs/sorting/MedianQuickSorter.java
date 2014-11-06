@@ -18,6 +18,10 @@ public class MedianQuickSorter<T>
   @Override
   public T selectPivot(T[] vals, Comparator<T> order, int lb, int ub)
   {
+    
+    //Get three random elements in vals, put them in an array, sort
+    //the array and then return the second elements (since there are
+    //always going to be 3 elements in our array)
     Random rand = new Random();
 
     T a = vals[Math.abs((rand.nextInt() % (ub-lb)) + lb)];
