@@ -8,7 +8,7 @@ public class MergeAnalyzer
   /**
    * Observations:
    *    Average:
-   *    For each of the tested cases, random, increaseing, decreasing and mostly
+   *    For each of the tested cases, random, increasing, decreasing and mostly
    *    MergeSorter performed one second slower than our other two methods with the 
    *    exception of random(10000), increasing(20000) and mostly(20000) where it 
    *    tied with MergeSorterB (random) and ItrMergeSorter (increasing & mostly) 
