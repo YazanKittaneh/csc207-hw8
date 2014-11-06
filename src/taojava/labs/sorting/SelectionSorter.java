@@ -1,6 +1,5 @@
 package taojava.labs.sorting;
 
-import java.util.Arrays;
 import java.util.Comparator;
 
 /**

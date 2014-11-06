@@ -27,8 +27,15 @@ public class MergeAnalyzer
    *    other test cases. 
    *    
    *    Min:
+   *    The minimum values for increasing, decreasing and mostly, followed much of 
+   *    the same pattern as that of the max values save for increasing(20000) and 
+   *    mostly(20000) where MergeSorter and IterMergeSorter tied for the worst time
+   *    (+1).  The times for random were still fairly slow.
    *    
-   *    
+   *    Overall, based on the data we collected, it would seem that MergeSorterB 
+   *    is the most efficient followed closely by IterMergeSorter.  MergeSorter,
+   *    while close for some instances, is generally much slower than its
+   *    sister methods.
    */
   public static void main(String[] args)
   {
