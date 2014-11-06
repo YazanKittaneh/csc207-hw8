@@ -171,10 +171,9 @@ public class SorterAnalyzer
     // Start the timer.  (Duh.)
     timer.start();
     // Do the real work.
-    Integer[] blah = {1, 5, 3, 7, 2, 5, 6};
     try
       {
-        sorter.sort((T[])blah, order);
+        sorter.sort(values, order);
       } // try            
     catch (Throwable error)
       {

@@ -2,27 +2,22 @@ package taojava.labs.sorting;
 
 import java.io.PrintWriter;
 
-/**
- * A very simple analysis of a few sorting algorithms.
- * 
- * @author Samuel A. Rebelsky
- * @author Your Name Here
- */
-public class SampleAnalysis
+public class MergeAnalyzer
 {
 
+  /**
+   * Observations:
+   *    
+   */
   public static void main(String[] args)
   {
     PrintWriter pen = new PrintWriter(System.out, true);
     @SuppressWarnings("unchecked")
     Sorter<Integer>[] sorters =
-        (Sorter<Integer>[]) new Sorter[] { new BuiltinSorter<Integer>(),
-                                          new InsertionSorter<Integer>(),
-                                          new NewQuicksorter<Integer>(),
-                                          new MergeSorter<Integer>(),
+        (Sorter<Integer>[]) new Sorter[] { new MergeSorter<Integer>(),
                                           new MergeSorterB<Integer>(),
                                           new IterativeMergeSorter<Integer>()};
-    String[] sorterNames = { "Built-in", "InsertionSorter", "Quicksorter", "MergeSorter", "MergeSorterB", "IterMergeSorter" };
+    String[] sorterNames = { "MergeSorter", "MergeSorterB", "IterMergeSorter" };
 
     @SuppressWarnings("unchecked")
     ArrayBuilder<Integer>[] builders =
@@ -36,5 +31,6 @@ public class SampleAnalysis
     SorterAnalyzer.combinedAnalysis(pen, sorters, sorterNames,
                                     SorterAnalyzer.standardIntComparator,
                                     builders, builderNames);
-  } // main(String[]
-} // SampleAnalysis
+  }
+
+}
