@@ -28,7 +28,7 @@ public class TestUtils
              + "Resorted: " + Arrays.toString(resorted) + "\n" + "Sorted:   "
              + Arrays.toString(sorted));
       } // if the resorted does not match the expected
-  } // checkResults
+  } // checkRe sults
 
   /**
    * Test one permutation of sorted.

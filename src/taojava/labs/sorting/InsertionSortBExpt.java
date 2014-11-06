@@ -5,7 +5,7 @@ package taojava.labs.sorting;
  * 
  * @author Yazan Kittaneh
  */
-public class InsertionSort2Expt
+public class InsertionSortBExpt
 {
   /**
    * Run the experiments.

@@ -16,12 +16,12 @@ public class SampleAnalysis
     PrintWriter pen = new PrintWriter(System.out, true);
     @SuppressWarnings("unchecked")
     Sorter<Integer>[] sorters =
-        (Sorter<Integer>[]) new Sorter[] { /*new BuiltinSorter<Integer>(),*/
-                                          /*new InsertionSorter<Integer>(),*/
-                                          /*new NewQuicksorter<Integer>(),
+        (Sorter<Integer>[]) new Sorter[] { new BuiltinSorter<Integer>(),
+                                          new InsertionSorter<Integer>(),
+                                          new NewQuicksorter<Integer>(),
                                           new MergeSorter<Integer>(),
-                                          new MergeSorterB<Integer>(),*/
-                                          new IterativeMergeSorter<Integer>()};
+                                          new MergeSorterB<Integer>(),
+                                          };
     String[] sorterNames = { "Built-in", "Quicksorter", "MergeSorter", "MergeSorterB", "IterMergeSorter" };
 
     @SuppressWarnings("unchecked")

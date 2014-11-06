@@ -11,6 +11,16 @@ import java.io.PrintWriter;
 public class InsertionAnalysis
 {
 
+  /*
+   * We see from the result that the built in insertion sort 
+   * has far superior run times than our implemented sorts.
+   * We also observe that in lower lengths, the built-in swap() method 
+   * is slightly slower than the manual swap. In bigger lengths,
+   * the built-in swap is slightly faster. In both cases, the 
+   * shift implementation is faster. 
+   * 
+   */
+  
   public static void main(String[] args)
   {
     PrintWriter pen = new PrintWriter(System.out, true);

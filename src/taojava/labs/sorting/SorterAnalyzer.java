@@ -1,4 +1,4 @@
-package taojava.labs.sorting;
+  package taojava.labs.sorting;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ import java.util.Random;
 public class SorterAnalyzer
 {
   // +---------------+---------------------------------------------------
-  // | Configuration |
+  // | Configuration | 
   // +---------------+
 
   /**
@@ -171,10 +171,11 @@ public class SorterAnalyzer
     // Start the timer.  (Duh.)
     timer.start();
     // Do the real work.
-    Integer[] blah = {1, 5, 3, 7, 2, 5, 6};
+    //Integer[] blah = {1, 5, 3, 7, 2, 5, 6};
+    
     try
       {
-        sorter.sort((T[])blah, order);
+        sorter.sort((T[])values, order);
       } // try            
     catch (Throwable error)
       {

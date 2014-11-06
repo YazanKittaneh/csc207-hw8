@@ -54,9 +54,10 @@ public class InsertionSorterB<T>
     //   I2(n) holds at the beginning because that subarray is empty
     //   I3(n) holds at the beginning because the second subarray is empty
     int i = n;
+    T tmp; 
     while ((i > 0) && (order.compare(vals[i - 1], vals[i]) > 0))
       {
-        T tmp = vals[i];  //puts current value into temp
+        tmp = vals[i];  //puts current value into temp
         vals[i] = vals[i - 1]; //places previous value into current value
         vals[i - 1] = tmp; // inserts temp into current position
         // Analysis:

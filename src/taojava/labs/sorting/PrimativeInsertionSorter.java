@@ -6,21 +6,18 @@ import java.util.Comparator;
  * Sort using insertion sort, using a manual shift policy
  * 
  * @author Yazan Kittaneh
- * @param <T>
  */
-public class InsertionSorterC<T>
-    extends SorterBridge<T>
+
+public class PrimativeInsertionSorter 
 {
   /**
-   * Sort vals using insertion sort. See the Sorter<T> interface for additional
-   * details.
+   * Sort vals using insertion sort. 
    */
-  @Override
-  public T[] sorti(T[] vals, Comparator<T> order)
+  public static int[] sort(int[] vals)
   {
     for (int i = 1; i < vals.length; i++)
       {
-        insert(vals, order, i);
+        insert(vals, i);
       } // for
     return vals;
   } // sorti(T[], Comparator<T>)
@@ -42,7 +39,20 @@ public class InsertionSorterC<T>
    * @post Utils.sorted(values, order, 0, n-1)
    * @post No elements have been added or removed.
    */
-  void insert(T[] vals, Comparator<T> order, int n)
+  
+  public static boolean compareTo(int val1, int val2)
+  {
+  boolean test;
+  if(val1 > val2) //if the first element is greater than the secound argument
+    test=true; // returns true
+  else
+    test=false; // else returns false
+  return test;
+  }
+  
+  
+  
+  static void insert(int[] vals, int n)
   {
     // Invariants:
     //   I1(i): Utils.sorted(values,0,i).
@@ -54,17 +64,17 @@ public class InsertionSorterC<T>
     //   I2(n) holds at the beginning because that subarray is empty
     //   I3(n) holds at the beginning because the second subarray is empty
     int i = n;
-    T tmp = vals[n];
-    while ((i > 0) && (order.compare(vals[i - 1], vals[i]) > 0))
+    int tmp = vals[n];
+    while ((i > 0) && compareTo(vals[i - 1], vals[i]))
       {
         vals[i] = vals[i - 1]; //places previous value into current value
         vals[i - 1] = tmp; // inserts temp into current position
         
         
         // Analysis:
-        //   I1(i) holds, because we put in (i-1), which is defined,
-        //   at that position
-        //   I2(i-1) holds b/c all the values in position i..(i-1) were
+        //   I1(i-1) holds, but I1(i) does not hold, because we put an
+        //    an "unknown" element at position i-1.
+        //   I2(i-1) holds b/c all the values in position 0..(i-1) were
         //    less than the values in positions (i+1)..n by I3
         //   I3(i-1) holds b/c we know that the value at position i-1 was
         //    the largest.
